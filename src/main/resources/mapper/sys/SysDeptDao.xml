@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.framework.modules.sys.dao.SysDeptDao">
+	
+	<select id="queryDetpIdList" resultType="string">
+		select dept_id from sys_dept where parent_id = #{value} and del_flag = 0
+	</select>
+	<select id="selectById" resultType="SysDeptEntity" parameterType="string">
+		select dept_id,PARENT_ID,REPLACE(name, chr(0), '')name,order_Num,DEL_FLAG from SYS_DEPT where dept_id=#{deptId}
+	</select>
+</mapper>

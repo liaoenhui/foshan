@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow-x:visible">
+<head>
+  <meta charset="UTF-8">
+  <title>至元搜索</title>
+  <link rel="stylesheet" href="${request.contextPath}/statics/css/test/myPagination.css">
+  <link rel="stylesheet" href="${request.contextPath}/statics/css/test/jquery-ui.css">
+  <link rel="stylesheet" href="${request.contextPath}/statics/css/test/searchxq.css">
+</head>
+<body>
+  <#include "/header.html">
+  <div class="mainbox">
+    <div class="bigbox1 clearfix" id="bigbox1">
+  <div class="SXQlogo-name fl">ZY</div>
+  <div class="SQL-search fl">
+      <input id="tags" class="form-content" v-model="tags" @keyup.enter="pagejump">
+      <span class="btn form-search"  @click="pagejump">搜索一下</span>
+   </div>
+</div>
+<div class="contentbox">
+    <p class="content-result1">至元为您找到相关结果约1000个</p>
+<!--     <p class="content-result2">没有找到相关的信息</p> -->
+  	<ul class="contentbox-ul" v-for="item in Scontent">
+      <li class="contentbox-li">
+         <a  :href="item.url" class="SXQ-title">{{item.title}}</a>
+         <div class="SXQ-content">{{item.content}}</div>
+         <a :href="item.url">{{item.url}}</a> 
+      </li>
+    </ul>
+    <div id="pagination" class="pagination"></div>
+</div>  
+  </div>
+</body>
+<script type="text/javascript" src="${request.contextPath}/statics/js/test/myPagination.js"></script>
+<script type="text/javascript" src="${request.contextPath}/statics/js/test/jquery-ui.js"></script>
+<script type="text/javascript" src="${request.contextPath}/statics/js/test/searchxq.js"></script>
+
+</html>

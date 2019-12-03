@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.framework.modules.sys.dao.MessageConfigDao">
+	<select id="findLastChildren" resultType="SysDeptEntity" parameterType="string">
+		SELECT t.sssxbh   AS deptId,
+		       t.ssdeptid AS parentId,
+		       t.sssxmc as name,
+		       0          AS orderNum,
+		       1          AS delFlag,
+		       3 as lastchildren
+		  from foshan.bzh_item_code t
+		 where t.ssdeptid = #{deptId}
+		 and t.STATUS=1
+	</select>
+	<select id="findLastChildrenForProject" resultType="SysDeptEntity" parameterType="string">
+		SELECT t.project_code AS deptId,
+		       t.location_code          AS parentId,
+		       t.project_name  as name,
+		       0               AS orderNum,
+		       1               AS delFlag,
+		       3               as lastchildren
+		  from foshan.tb_project t
+		 where t.location_code = #{deptId}
+	</select>
+	<select id="getReceiverById" resultType="map" parameterType="map">
+		select t.id,
+         t.sender,
+         t.sendername,
+         t.receiver,
+         t.receivername,
+         t.issendphone,
+         a.mobile
+    from foshan.v_supervision_receiver_config t
+    left join sys_user a on a.username=t.receiver
+	 where t.id =#{roleId}
+	</select>
+	<select id="getConfigList" resultType="MessageConfigEntity" parameterType="map">
+		select t.id as id,t.type_id as typeId,t.source_id as sourceId,t.receiver as receiver,t.create_time as createTime,t.flag as flag,t.sender as sender,t.cc_account as ccAccount, b1.displayname as sendername, (d.name || b2.displayname) as receivername, b3.displayname as ccAccountname,c.sssxmc as sourcename
+      from foshan.tb_supervision_receiver_config t
+      left join zysj.sys_user b1
+        on t.sender = b1.username
+      left join zysj.sys_user b2
+        on t.receiver = b2.username
+      left join zysj.sys_user b3
+        on t.cc_account = b3.username
+        left join foshan.bzh_item_code c
+        on t.source_id=c.sssxbh
+        left join sys_dept d
+        on d.dept_id=b2.dept_id
+        where t.type_id=2
+        union
+        select t.id as id,t.type_id as typeId,t.source_id as sourceId,t.receiver as receiver,t.create_time as createTime,t.flag as flag,t.sender as sender,t.cc_account as ccAccount, b1.displayname as sendername, (d.name || b2.displayname) as receivername, b3.displayname as ccAccountname,d.project_name as sourcename
+      from foshan.tb_supervision_receiver_config t
+      left join zysj.sys_user b1
+        on t.sender = b1.username
+      left join zysj.sys_user b2
+        on t.receiver = b2.username
+      left join zysj.sys_user b3
+        on t.cc_account = b3.username
+        left join foshan.tb_project d
+        on t.source_id=d.project_code
+        left join sys_dept d
+        on d.dept_id=b2.dept_id
+        where t.type_id=1
+
+	</select>
+	<select id="findProjectList" resultType="SysDeptEntity">
+		SELECT distinct t.location_code AS deptId,
+                t.area || 'a' AS parentId,
+                decode(length(t.location_code), 6, decode(t.area,'440601','市本级','440604','禅城区','440605','南海区','440606','顺德区','440607','三水区','440608','高明区'), 9, t.location) as name,
+                0 AS orderNum,
+                1 AS delFlag,
+                1 as lastchildren
+  		from foshan.tb_project t where t.area=substr(t.location_code,0,6)
+		<!-- union
+		SELECT '4406' AS deptId,
+		       '0' AS parentId,
+		       '佛山' as name,
+		       0 AS orderNum,
+		       1 AS delFlag,
+		       1 as lastchildren
+		  from foshan.tb_project t -->
+		union
+		SELECT '440601a' AS deptId,
+		       '4406' AS parentId,
+		       '佛山市本级' as name,
+		       0 AS orderNum,
+		       1 AS delFlag,
+		       2 as lastchildren
+		  from foshan.tb_project t
+		union
+		SELECT '440604a' AS deptId,
+		       '4406' AS parentId,
+		       '禅城区' as name,
+		       0 AS orderNum,
+		       1 AS delFlag,
+		       2 as lastchildren
+		  from foshan.tb_project t
+		union
+		SELECT '440605a' AS deptId,
+		       '4406' AS parentId,
+		       '南海区' as name,
+		       0 AS orderNum,
+		       1 AS delFlag,
+		       2 as lastchildren
+		  from foshan.tb_project t
+		union
+		SELECT '440606a' AS deptId,
+		       '4406' AS parentId,
+		       '顺德区' as name,
+		       0 AS orderNum,
+		       1 AS delFlag,
+		       2 as lastchildren
+		  from foshan.tb_project t
+		union
+		SELECT '440607a' AS deptId,
+		       '4406' AS parentId,
+		       '三水区' as name,
+		       0 AS orderNum,
+		       1 AS delFlag,
+		       2 as lastchildren
+		  from foshan.tb_project t
+		union
+		SELECT '440608a' AS deptId,
+		       '4406' AS parentId,
+		       '高明区' as name,
+		       0 AS orderNum,
+		       1 AS delFlag,
+		       2 as lastchildren
+		  from foshan.tb_project t
+		<!--  union
+		SELECT t.project_code AS deptId,
+		       t.location_code          AS parentId,
+		       t.project_name  as name,
+		       0               AS orderNum,
+		       1               AS delFlag,
+		       3               as lastchildren
+		  from foshan.tb_project t -->
+
+	</select>
+	<delete id="deleteApprove" parameterType="map">
+		delete from foshan.tb_supervision_receiver_config a where a.source_id in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+             #{item}
+        </foreach>
+	</delete>
+	<insert id="saveApprove" parameterType="map">
+		insert into foshan.tb_supervision_receiver_config(
+		<if test="CC_ACCOUNT != null and CC_ACCOUNT != ''">
+		CC_ACCOUNT,
+		</if>
+		<if test="SENDER != null and SENDER != ''">
+		SENDER,
+		</if>
+		<if test="RECEIVER != null and RECEIVER != ''">
+		RECEIVER,
+		</if>
+		ID,
+		TYPE_ID,
+		SOURCE_ID,
+		CREATE_TIME,
+		FLAG
+		)values(
+		<if test="CC_ACCOUNT != null and CC_ACCOUNT != ''">
+		#{CC_ACCOUNT},
+		</if>
+		<if test="SENDER != null and SENDER != ''">
+		#{SENDER},
+		</if>
+		<if test="RECEIVER != null and RECEIVER != ''">
+		#{RECEIVER},
+		</if>
+		#{ID},
+		#{TYPE_ID},
+		#{SOURCE_ID},
+		#{CREATE_TIME},
+		1
+		)
+	</insert>
+	<update id="setReveiverById"  parameterType="map">
+	update foshan.tb_supervision_receiver_config a set a.receiver=#{receiver},a.is_send_phone=#{IS_SEND_PHONE}
+ where a.id=#{id}
+	</update>
+	<!-- <select id="queryDetpIdList" resultType="long">
+		select dept_id from sys_dept where parent_id = #{value} and del_flag = 0
+	</select>
+	<select id="selectById" resultType="SysDeptEntity" parameterType="string">
+		select dept_id,PARENT_ID,REPLACE(name, chr(0), '')name,order_Num,DEL_FLAG from SYS_DEPT where dept_id=#{deptId}
+	</select> -->
+</mapper>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>至元横向导航</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="css/helang.css">
+  <link rel="stylesheet" href="${request.contextPath}/statics/css/test/navigation.css">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+<nav class="hl_nav">
+    <div class="hl_main">
+        <div class="admin-logo-box">
+           <a href="javascript:;" class="logo"><small>至元通用框架</small></a> 
+        </div>
+        <ul class="nav_list clearfix">
+            <li class=""><!-- 选中颜色用active -->
+                <a class="nav_head" href="javascipt:;">网站首页</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">网站首页-1</a></li>
+                    <li><a href="javascipt:;">网站首页-2</a></li>
+                    <li><a href="javascipt:;">网站首页-3</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <a class="nav_head" href="javascipt:;">在线下载</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">在线下载-1</a></li>
+                    <li><a href="javascipt:;">在线下载-2</a></li>
+                    <li><a href="javascipt:;">在线下载-3</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <a class="nav_head" href="javascipt:;">成功案例</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">成功案例-1</a></li>
+                    <li><a href="javascipt:;">成功案例-2</a></li>
+                    <li><a href="javascipt:;">成功案例-3</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <a class="nav_head" href="javascipt:;">新闻动态</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">新闻动态-1</a></li>
+                    <li><a href="javascipt:;">新闻动态-2</a></li>
+                    <li><a href="javascipt:;">新闻动态-3</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <a class="nav_head" href="javascipt:;">与我联系</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">与我联系-1</a></li>
+                    <li><a href="javascipt:;">与我联系-2</a></li>
+                    <li><a href="javascipt:;">与我联系-3</a></li>
+                    <li><a href="javascipt:;">与我联系-4</a></li>
+                    <li><a href="javascipt:;">与我联系-5</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="nav_head" href="javascipt:;">资讯栏目</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">资讯栏目-1</a></li>
+                    <li><a href="javascipt:;">资讯栏目-2</a></li>
+                    <li><a href="javascipt:;">资讯栏目-3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="nav_head" href="javascipt:;">组织架构</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">组织架构-1</a></li>
+                    <li><a href="javascipt:;">组织架构-2</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="nav_head" href="javascipt:;">专业团队</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">专业团队-1</a></li>
+                    <li><a href="javascipt:;">专业团队-2</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="nav_head" href="javascipt:;">招贤纳士</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">招贤纳士-1</a></li>
+                    <li><a href="javascipt:;">招贤纳士-2</a></li>
+                    <li><a href="javascipt:;">招贤纳士-3</a></li>
+                    <li><a href="javascipt:;">招贤纳士-4</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="nav_head" href="javascipt:;">关于我们</a>
+                <ul class="offset_left">
+                    <li><a href="javascipt:;">关于我们-1</a></li>
+                    <li><a href="javascipt:;">关于我们-2</a></li>
+                    <li><a href="javascipt:;">关于我们-3</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+    </div>
+    <div class="shade"></div>
+</nav>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>          
+<script>
+$('.nav_list li').on('mouseover',function(){
+    $('.shade').show();
+})
+$('.offset_left').on('mouseover',function(){
+    $('.shade').show();
+})
+$('.nav_list li').on('mouseout',function(){
+    $('.shade').hide();
+})
+$('.offset_left').on('mouseout',function(){
+    $('.shade').hide();
+})
+</script>
+
+</body>
+</html>

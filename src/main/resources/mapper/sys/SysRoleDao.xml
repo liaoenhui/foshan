@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.framework.modules.sys.dao.SysRoleDao">
+	
+	<select id="queryListBySql" resultType="com.framework.modules.sys.entity.SysRoleEntity">
+		SELECT  role_id AS roleId,role_name AS roleName,remark,dept_id AS deptId,domain_id AS domainId,create_time AS createTime  FROM sys_role
+	</select>
+
+
+</mapper>

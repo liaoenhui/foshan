@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<mapper namespace="com.framework.modules.deqing.dao.TestDao">
+	<!-- 根据key，查询value -->
+	<select id="get1"  resultType="map">
+		select * from sys_log
+	</select>
+	
+</mapper>

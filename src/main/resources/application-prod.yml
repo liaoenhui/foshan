@@ -1,0 +1,50 @@
+eureka:
+    client:
+      serviceUrl:
+          defaultZone: http://19.130.223.92:8801/eureka/ 
+      registerWithEureka: true
+      fetchRegistry: false
+    instance:
+      hostname: ${spring.cloud.client.ip-address}
+      ip-address: 19.130.223.92
+      prefer-ip-address: true
+      lease-expiration-duration-in-seconds: 15
+      lease-renewal-interval-in-seconds: 5  
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: oracle.jdbc.driver.OracleDriver
+        druid:
+            first:  #数据源1
+                url: jdbc:oracle:thin:@//19.130.223.103:1521/orcl.zydata
+                username: zysj
+                password: admin123
+            second:  #数据源2
+                url: jdbc:oracle:thin:@//19.130.223.103:1521/orcl.zydata
+                username: zysj
+                password: admin123
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            pool-prepared-statements: true
+            max-pool-prepared-statement-per-connection-size: 20
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            #validation-query: SELECT 1 FROM DUAL
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                #login-username: admin
+                #login-password: admin
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: false
+                wall:
+                    config:
+                        multi-statement-allow: true

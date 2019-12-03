@@ -1,0 +1,93 @@
+*{margin:0;padding:0;}
+.clearfix:after { content: '.'; display: block; clear: both; height: 0; visibility: hidden; }
+.clearfix { zoom: 1; }
+ul,li{list-style: none;}
+.bigbox1{
+  min-width:642px;
+  background:#fff;
+  position: relative;
+  top: 10px;
+}
+.fl{float: left;}
+.fr{float: right;}
+.SXQlogo-name{
+    color: #e6e6e6;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -10px;
+    margin-bottom: 0px;
+    width: 102px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+}
+.SQL-search{
+	min-width:540px;
+}
+.form-content{
+    width: 70%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.form-search{
+	width:28%;
+	background-color: #1ab394;
+    border-color: #1ab394;
+    color: #FFFFFF; 
+}
+.btn:hover{
+	color:#fff!important;
+}
+.contentbox{
+  position: relative;
+}
+.content-result1{
+    margin: 0 0 0 102px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 12px;
+    color: #999;
+}
+.content-result2{
+    margin: 0 0 0 102px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 12px;
+    color: red;
+}	
+.SXQ-title{
+	font-weight: 400;
+    font-size: medium;
+    color: rgb(0, 0, 204);
+    cursor: pointer;
+    text-decoration: underline;
+}
+.contentbox-ul{
+	margin-left:102px;
+	max-width:540px;
+	word-wrap: break-word;
+    word-break: normal;
+}
+.contentbox-li{
+	margin-bottom:14px;
+}
+#pagination{
+	margin-left:102px;
+}
+.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>至元搜索</title>
+  <link rel="stylesheet" href="${request.contextPath}/statics/css/test/jquery-ui.css">
+  <link rel="stylesheet" href="${request.contextPath}/statics/css/test/search.css">
+</head>
+<body>
+ <#include "/header.html">
+ <div class="Slogin-box" id="Slogin-box">
+        <div class="middle-box text-center loginscreen">
+            <h2 class="Slogo-name">ZY</h2>
+            <input id="tags" class="form-content" @keyup.enter="pagejump"> 
+            <span class="btn form-search" @click="pagejump" >搜索一下</span>
+        </div>
+    </div>
+  
+</body>
+<script type="text/javascript" src="${request.contextPath}/statics/js/test/jquery-ui.js"></script>
+<script type="text/javascript" src="${request.contextPath}/statics/js/test/search.js"></script>
+</html>
